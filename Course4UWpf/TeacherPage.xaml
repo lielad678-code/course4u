@@ -1,0 +1,194 @@
+﻿<Page x:Class="Course4UWpf.TeacherPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d"
+      Title="TeacherPage"
+      d:DesignHeight="700" d:DesignWidth="1200"
+      FontFamily="Segoe UI">
+
+
+    <!-- 🎨 COLORS -->
+    <Page.Resources>
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#FFFBC02D"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="#FFFFF176"/>
+        <SolidColorBrush x:Key="BackgroundBrush" Color="#FFFFFDE7"/>
+        <SolidColorBrush x:Key="CardBrush" Color="White"/>
+        <SolidColorBrush x:Key="TextPrimary" Color="#333"/>
+        <SolidColorBrush x:Key="TextSecondary" Color="#666"/>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource BackgroundBrush}" Margin="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- HEADER -->
+        <Grid Grid.Row="0" Margin="0,0,0,30">
+            <StackPanel>
+                <TextBlock x:Name="txtWelcome"
+                           Text="Welcome back, Teacher!"
+                           FontSize="32"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource PrimaryBrush}"/>
+                <TextBlock Text="Here's your teaching dashboard"
+                           FontSize="15"
+                           Foreground="{StaticResource TextSecondary}"
+                           Margin="0,5,0,0"/>
+            </StackPanel>
+
+            <Button x:Name="btnLogout"
+                    Content="Logout"
+                    Click="btnLogout_Click"
+                    HorizontalAlignment="Right"
+                    Background="Transparent"
+                    Foreground="#D32F2F"
+                    BorderThickness="0"
+                    FontWeight="SemiBold"/>
+        </Grid>
+
+        <!-- STATS -->
+        <Grid Grid.Row="1" Margin="0,0,0,30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!-- JOBS -->
+            <Border Grid.Column="0" Background="{StaticResource CardBrush}" CornerRadius="12" Padding="25">
+                <StackPanel>
+                    <TextBlock Text="💰" FontSize="30"/>
+                    <TextBlock Text="salery" Foreground="{StaticResource TextSecondary}"/>
+                    <TextBlock x:Name="txtSalery"
+                               FontSize="36"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource PrimaryBrush}"/>
+                </StackPanel>
+            </Border>
+
+            <!-- TEACHING COURSE (replaces Rating) -->
+            <Border Grid.Column="2" Background="{StaticResource CardBrush}" CornerRadius="12" Padding="25">
+                <StackPanel>
+                    <TextBlock Text="🎓" FontSize="30"/>
+                    <TextBlock Text="Teaching Course" Foreground="{StaticResource TextSecondary}"/>
+                    <TextBlock x:Name="txtTeachingCourse"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource TextPrimary}"
+                               Margin="0,8,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <!-- PRICE -->
+            <Border Grid.Column="4" Background="{StaticResource CardBrush}" CornerRadius="12" Padding="25">
+                <StackPanel>
+                    <TextBlock Text="💰" FontSize="30"/>
+                    <TextBlock Text="Hourly Rate" Foreground="{StaticResource TextSecondary}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="txtPrice"
+                                   FontSize="36"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource PrimaryBrush}"/>
+                        <TextBlock Text="ILS"
+                                   FontSize="18"
+                                   Foreground="{StaticResource TextSecondary}"
+                                   Margin="5,0,0,6"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- CONTENT -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- LEFT -->
+            <StackPanel Grid.Column="0">
+
+                <!-- UPCOMING -->
+                <Border Background="{StaticResource CardBrush}" CornerRadius="12" Padding="25" Margin="0,0,0,30">
+                    <StackPanel>
+                        <TextBlock Text="📅 Upcoming Sessions"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"/>
+                        <ItemsControl x:Name="lstUpcoming"/>
+                        <TextBlock x:Name="txtNoUpcoming"
+                                   Text="No upcoming sessions."
+                                   Foreground="{StaticResource TextSecondary}"
+                                   Visibility="Collapsed"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- INSTRUMENTS -->
+                <Border Background="{StaticResource CardBrush}" CornerRadius="12" Padding="25">
+                    <StackPanel>
+                        <TextBlock Text="🎸 My Instruments"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"/>
+                        <ItemsControl x:Name="icInstruments"/>
+                        <TextBlock x:Name="txtNoInstruments"
+                                   Text="No instruments selected yet."
+                                   Foreground="{StaticResource TextSecondary}"
+                                   Visibility="Collapsed"/>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <!-- RIGHT -->
+            <StackPanel Grid.Column="2">
+
+                <!-- NOTIFICATIONS -->
+                <Border Background="{StaticResource CardBrush}" CornerRadius="12" Padding="25" Margin="0,0,0,30">
+                    <StackPanel>
+                        <TextBlock Text="🔔 Notifications"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"/>
+                        <ListView x:Name="lstNotifications"
+                                  BorderThickness="0"
+                                  Background="Transparent"/>
+                        <TextBlock x:Name="txtNoNotifications"
+                                   Text="No new notifications"
+                                   Foreground="{StaticResource TextSecondary}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- QUICK ACTIONS -->
+                <!--<Border Background="{StaticResource CardBrush}" CornerRadius="12" Padding="25">
+                    <StackPanel>
+                        <TextBlock Text="⚡ Quick Actions"
+                                   FontSize="20"
+                                   FontWeight="SemiBold"/>
+
+                        <Button x:Name="btnViewProfile"
+                                Content="👤 View My Profile"
+                                Click="btnViewProfile_Click"
+                                Margin="0,10,0,0"
+                                Background="{StaticResource AccentBrush}"/>
+
+                        <Button x:Name="btnManageSchedule"
+                                Content="📅 Manage Schedule"
+                                Click="btnManageSchedule_Click"
+                                Margin="0,10,0,0"
+                                Background="{StaticResource AccentBrush}"/>
+
+                        <Button x:Name="btnManageInstruments"
+                                Content="🎹 Manage Instruments"
+                                Click="btnManageInstruments_Click"
+                                Margin="0,10,0,0"
+                                Background="{StaticResource AccentBrush}"/>
+                    </StackPanel>
+                </Border>-->
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

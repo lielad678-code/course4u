@@ -1,0 +1,182 @@
+﻿<Window x:Class="Course4UWpf.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Course4U Login"
+        Height="470" Width="370"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="Transparent"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        FontFamily="Segoe UI">
+
+    <!-- 🎨 COLORS AND STYLES -->
+    <Window.Resources>
+        <!-- ⚽ Yellow Palette -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#FFFBC02D"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="#FFFFF176"/>
+        <SolidColorBrush x:Key="BackgroundBrush" Color="#FFFFFDE7"/>
+        <SolidColorBrush x:Key="ShadowColor" Color="#44000000"/>
+
+        <!-- ❌ Close Button -->
+        <Style x:Key="CloseButtonTheme" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#777"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="Background" Value="#FFFDD835"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 🔹 Modern Button -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#33FBC02D" BlurRadius="10" ShadowDepth="0"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FFF9A825"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- 📦 Input Field Border -->
+        <Style x:Key="InputBorderStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="BorderBrush" Value="#FFFFF9C4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=InnerInput, Path=IsKeyboardFocused}" Value="True">
+                    <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <!-- 🌤 MAIN LAYOUT -->
+    <Border CornerRadius="15" Background="{StaticResource BackgroundBrush}" Margin="10">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="20" Opacity="0.35" Color="#444"/>
+        </Border.Effect>
+
+        <Grid Margin="0,-6,0,6">
+            <!-- Close Button -->
+            <Button x:Name="CloseButton" 
+                    Content="×" 
+                    VerticalAlignment="Top" 
+                    Margin="332,5,5,0"
+                    Style="{StaticResource CloseButtonTheme}"
+                    Click="CloseButton_Click"/>
+
+            <!-- CONTENT -->
+            <StackPanel VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" Width="323">
+
+                <!-- 🏟 Updated Title -->
+                <TextBlock Text="Welcome to Course4U"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           Foreground="#FBC02D"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,5"/>
+
+                <TextBlock Text="Play, learn, enjoy!"
+                           FontSize="14"
+                           Foreground="#555"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,25"/>
+
+                <!-- Username -->
+                <Label Content="Email" 
+                       Foreground="#333"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,5"/>
+                <Border Style="{StaticResource InputBorderStyle}">
+                    <TextBox x:Name="EmailTextBox" 
+                             x:FieldModifier="public"
+                             BorderThickness="0"
+                             Padding="8"
+                             Background="Transparent"
+                             FontSize="14"/>
+                </Border>
+
+                <!-- Password -->
+                <Label Content="Password"
+                       Foreground="#333"
+                       FontWeight="SemiBold"
+                       Margin="0,15,0,5"/>
+                <Border Style="{StaticResource InputBorderStyle}">
+                    <PasswordBox x:Name="PasswordInputBox"
+                                 x:FieldModifier="public"
+                                 BorderThickness="0"
+                                 Padding="8"
+                                 Background="Transparent"
+                                 FontSize="14"/>
+                </Border>
+
+                <!-- Login Button -->
+                <Button x:Name="LoginButton"
+                        Content="Log In"
+                        Margin="0,25,0,15"
+                        Style="{StaticResource ModernButton}"
+                        Click="LoginButton_Click"/>
+                <Button x:Name="RegisterButton"
+                        Content="Register"
+                        Margin="0,25,0,15"
+                        Style="{StaticResource ModernButton}"
+                        Click="RegisterButton_Click"/>
+
+                <!-- Error message -->
+                <TextBlock x:Name="ErrorMessageTextBlock"
+                           Foreground="#FBC02D"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           FontWeight="SemiBold"
+                           FontSize="13"
+                           MinHeight="25"
+                           Margin="0,5,0,0"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
