@@ -250,6 +250,13 @@
                             Content="Sign Up"
                             Style="{StaticResource PrimaryButton}"
                             Click="SignButton_Click"/>
+                        
+                        <Button Grid.Column="0"
+                            x:Name="deleteButton"
+                            Content="delete"
+                            Style="{StaticResource PrimaryButton}"
+                            Click="DeleteButton_Click"/>
+                        
 
                         <Button Grid.Column="2"
                             x:Name="CancelButton"

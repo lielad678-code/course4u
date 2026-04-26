@@ -25,7 +25,6 @@ namespace Course4UWpf.Controls
             InitializeComponent();
           
         }
-
         private void btnMoreInfo_Click(object sender, RoutedEventArgs e)
         {
             var course = this.DataContext as Course;

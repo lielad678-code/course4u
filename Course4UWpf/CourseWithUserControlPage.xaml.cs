@@ -52,6 +52,7 @@ namespace Course4UWpf
                     // חיבור האובייקט של התלמיד ל-DataContext של הכרטיס
                     courseCard.DataContext = item;
 
+
                     // הוספת הכרטיס לתצוגה
                     gridMyCourses.Children.Add(courseCard);
                 }
@@ -69,6 +70,7 @@ namespace Course4UWpf
 
                     // חיבור האובייקט של התלמיד ל-DataContext של הכרטיס
                     courseCard.DataContext = item;
+                    item.IsSignedIn = true;
 
                     // הוספת הכרטיס לתצוגה
                     gridMyCourses.Children.Add(courseCard);
@@ -78,15 +80,16 @@ namespace Course4UWpf
                 CourseList courses1 = cdb1.SelectNotMyCourses(MainWindow.loggedInUser.Id);
                 foreach (Course item in courses1)   //New course student can sign
                 {
-                        // יצירת מופע חדש של הפקד שיצרנו
-                        CourseCard courseCard = new CourseCard();
+                    // יצירת מופע חדש של הפקד שיצרנו
+                    CourseCard courseCard = new CourseCard();
 
-                        // חיבור האובייקט של התלמיד ל-DataContext של הכרטיס
-                        courseCard.DataContext = item;
+                    // חיבור האובייקט של התלמיד ל-DataContext של הכרטיס
+                    courseCard.DataContext = item;
+                    item.IsSignedIn = false;
 
-                        // הוספת הכרטיס לתצוגה
-                        gridNewCourses.Children.Add(courseCard);
-                    
+                    // הוספת הכרטיס לתצוגה
+                    gridNewCourses.Children.Add(courseCard);
+
                 }
 
 

@@ -18,7 +18,7 @@ namespace Model
         private DateTime startDate;
         private DateTime endDate;
         private int roomNumber;
-     
+        private bool isSignedIn;
 
         public string CourseType { get; set; }
         public Teacher Teacher { get; set; }
@@ -29,5 +29,6 @@ namespace Model
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int RoomNumber { get; set; }
+        public bool IsSignedIn { get; set; }
     }
 }

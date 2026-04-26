@@ -133,6 +133,17 @@ WHERE CourseTbl.ID NOT IN
 
             return new CourseList(base.Select());
         }
+        public CourseList SignNewCourse(int studentID,int courseID)
+        {
+
+            this.command.CommandText = $@"INSERT INTO StudentCourseTbl (StudentID, CourseID)
+VALUES ({studentID}, {courseID});
+
+";
+
+
+            return new CourseList(base.Select());
+        }
 
         protected override BaseEntity NewEntity()
         {
