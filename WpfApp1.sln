@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\View
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Course4UWpf", "Course4UWpf\Course4UWpf.csproj", "{F59B62AF-28E2-4371-A9B5-FE71AAB219F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServices", "WebServices\WebServices.csproj", "{1A52005E-08DD-474F-B2DC-76FFA92647E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWebsite", "MyWebsite\MyWebsite.csproj", "{330BAAF8-C35E-4105-93D2-BA38D7801D88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{F59B62AF-28E2-4371-A9B5-FE71AAB219F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F59B62AF-28E2-4371-A9B5-FE71AAB219F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F59B62AF-28E2-4371-A9B5-FE71AAB219F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A52005E-08DD-474F-B2DC-76FFA92647E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A52005E-08DD-474F-B2DC-76FFA92647E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A52005E-08DD-474F-B2DC-76FFA92647E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A52005E-08DD-474F-B2DC-76FFA92647E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{330BAAF8-C35E-4105-93D2-BA38D7801D88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{330BAAF8-C35E-4105-93D2-BA38D7801D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{330BAAF8-C35E-4105-93D2-BA38D7801D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{330BAAF8-C35E-4105-93D2-BA38D7801D88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
