@@ -133,9 +133,23 @@
                         <StackPanel>
                             <TextBlock Text="Teacher" Style="{StaticResource SectionLabel}"/>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Teacher.FirstName}"  Style="{StaticResource ValueText}"/>
+                                <TextBox Text="{Binding Teacher.FirstName}" x:Name="FirstNameText" IsReadOnly="True"
+BorderThickness="0"
+Background="Transparent"
+Foreground="{StaticResource ValueBrush}"
+FontSize="18"
+FontWeight="SemiBold"
+Padding="0"
+Margin="0"/>
                                 <TextBlock Text=" "/>
-                                <TextBlock Text="{Binding Teacher.LastName}"  Style="{StaticResource ValueText}"/>
+                                <TextBox Text="{Binding Teacher.LastName}" x:Name="LastNameText" IsReadOnly="True"
+BorderThickness="0"
+Background="Transparent"
+Foreground="{StaticResource ValueBrush}"
+FontSize="18"
+FontWeight="SemiBold"
+Padding="0"
+Margin="0"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>
@@ -150,9 +164,16 @@
                         <Border Grid.Column="0" Style="{StaticResource FieldCard}">
                             <StackPanel>
                                 <TextBlock Text="Day" Style="{StaticResource SectionLabel}"/>
-                                <TextBlock x:Name="DayText"
+                                <TextBox x:Name="DayText"
                                        Text="{Binding DayInWeek}"
-                                       Style="{StaticResource ValueText}"/>
+                                      IsReadOnly="True"
+BorderThickness="0"
+Background="Transparent"
+Foreground="{StaticResource ValueBrush}"
+FontSize="18"
+FontWeight="SemiBold"
+Padding="0"
+Margin="0"/>
                             </StackPanel>
                         </Border>
 
@@ -160,15 +181,29 @@
                             <StackPanel>
                                 <TextBlock Text="Hours" Style="{StaticResource SectionLabel}"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock x:Name="StartHourText"
-                                           Text="{Binding StartHour}"
-                                           Style="{StaticResource ValueText}"/>
+                                    <TextBox x:Name="StartHourText"
+                                           Text="{Binding StartHour,StringFormat={}{0:HH:mm}}"
+                                           IsReadOnly="True"
+BorderThickness="0"
+Background="Transparent"
+Foreground="{StaticResource ValueBrush}"
+FontSize="18"
+FontWeight="SemiBold"
+Padding="0"
+Margin="0"/>
                                     <TextBlock Text=" – "
                                            Style="{StaticResource ValueText}"
                                            Foreground="{StaticResource LabelBrush}"/>
-                                    <TextBlock x:Name="EndHourText"
-                                           Text="{Binding EndHour}"
-                                           Style="{StaticResource ValueText}"/>
+                                    <TextBox x:Name="EndHourText"
+                                           Text="{Binding EndHour,StringFormat={}{0:HH:mm}}"
+                                           IsReadOnly="True"
+BorderThickness="0"
+Background="Transparent"
+Foreground="{StaticResource ValueBrush}"
+FontSize="18"
+FontWeight="SemiBold"
+Padding="0"
+Margin="0"/>
                                 </StackPanel>
                             </StackPanel>
                         </Border>
@@ -192,18 +227,32 @@
                         <Border Grid.Column="0" Style="{StaticResource FieldCard}">
                             <StackPanel>
                                 <TextBlock Text="Start Date" Style="{StaticResource SectionLabel}"/>
-                                <TextBlock x:Name="StartDateText"
-                                       Text="{Binding StartDate}"
-                                       Style="{StaticResource ValueText}"/>
+                                <TextBox x:Name="StartDateText"
+                 Text="{Binding StartDate,StringFormat={}{0:MM/dd/yyyy}}"
+                 IsReadOnly="True"
+                 BorderThickness="0"
+                 Background="Transparent"
+                 Foreground="{StaticResource ValueBrush}"
+                 FontSize="18"
+                 FontWeight="SemiBold"
+                 Padding="0"
+                 Margin="0"/>
                             </StackPanel>
                         </Border>
 
                         <Border Grid.Column="2" Style="{StaticResource FieldCard}">
                             <StackPanel>
                                 <TextBlock Text="End Date" Style="{StaticResource SectionLabel}"/>
-                                <TextBlock x:Name="EndDateText"
-                                       Text="{Binding   EndDate}"
-                                       Style="{StaticResource ValueText}"/>
+                                <TextBox x:Name="EndDateText"
+                 Text="{Binding EndDate,StringFormat={}{0:MM/dd/yyyy}}"
+                 IsReadOnly="True"
+                 BorderThickness="0"
+                 Background="Transparent"
+                 Foreground="{StaticResource ValueBrush}"
+                 FontSize="18"
+                 FontWeight="SemiBold"
+                 Padding="0"
+                 Margin="0"/>
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -218,19 +267,32 @@
                         <Border Grid.Column="0" Style="{StaticResource FieldCard}">
                             <StackPanel>
                                 <TextBlock Text="Room" Style="{StaticResource SectionLabel}"/>
-                                <TextBlock x:Name="RoomText"
-                                       Text="{Binding RoomNumber}"
-                                       Style="{StaticResource ValueText}"/>
+                                <TextBox x:Name="RoomText"
+                 Text="{Binding RoomNumber}"
+                 IsReadOnly="True"
+                 BorderThickness="0"
+                 Background="Transparent"
+                 Foreground="{StaticResource ValueBrush}"
+                 FontSize="18"
+                 FontWeight="SemiBold"
+                 Padding="0"
+                 Margin="0"/>
                             </StackPanel>
                         </Border>
 
                         <Border Grid.Column="2" Style="{StaticResource FieldCard}">
                             <StackPanel>
                                 <TextBlock Text="Price" Style="{StaticResource SectionLabel}"/>
-                                <TextBlock x:Name="PriceText"
-                                       Text="{Binding Price}"
-                                       Style="{StaticResource ValueText}"
-                                       FontSize="18"/>
+                                <TextBox x:Name="PriceText"
+                 Text="{Binding Price}"
+                 IsReadOnly="True"
+                 BorderThickness="0"
+                 Background="Transparent"
+                 Foreground="{StaticResource ValueBrush}"
+                 FontSize="18"
+                 FontWeight="SemiBold"
+                 Padding="0"
+                 Margin="0"/>
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -250,13 +312,17 @@
                             Content="Sign Up"
                             Style="{StaticResource PrimaryButton}"
                             Click="SignButton_Click"/>
-                        
+
                         <Button Grid.Column="0"
-                            x:Name="deleteButton"
-                            Content="delete"
+                            x:Name="EditButton"
+                            Content="Edit"
                             Style="{StaticResource PrimaryButton}"
-                            Click="DeleteButton_Click"/>
-                        
+                            Click="EditButton_Click"/>
+                        <Button Grid.Column="0"
+                            x:Name="SaveChangesButton"
+                            Content="save"
+                            Style="{StaticResource PrimaryButton}"
+                            Click="SaveChangesButton_Click"/>
 
                         <Button Grid.Column="2"
                             x:Name="CancelButton"

@@ -45,8 +45,6 @@ INNER JOIN StudentTbl
             return new StudentList(base.Select());
         }
 
-
-
         public Student Login(string email, string password)
         {
             this.command.CommandText = $@"

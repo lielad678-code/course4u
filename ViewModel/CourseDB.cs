@@ -22,7 +22,22 @@ namespace ViewModel
 
         public override string CreateUpdateSQL(BaseEntity entity)
         {
-            throw new NotImplementedException();
+            Course course = entity as Course;
+
+            string sqlStr = $@"UPDATE CourseTbl
+SET 
+    TeacherID = {course.Teacher.Id},
+    CourseTypeID = '{course.CourseType}',
+    DayInWeek = '{course.DayInWeek}',
+    StartHour = #{course.StartHour:HH:mm:ss}#,
+    EndHour = #{course.EndHour:HH:mm:ss}#,
+    StartDate = #{course.StartDate:yyyy-MM-dd}#,
+    EndDate = #{course.EndDate:yyyy-MM-dd}#,
+    Price = {course.Price},
+    RoomNumber = {course.RoomNumber}
+WHERE ID = {course.Id};
+"; 
+            return sqlStr;
         }
 
         protected override void CreateModel(BaseEntity entity)

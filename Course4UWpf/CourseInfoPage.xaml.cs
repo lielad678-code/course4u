@@ -33,13 +33,17 @@ namespace Course4UWpf
             this.DataContext = course;
             currentCourse = course;
             if (MainWindow.loggedInUser is Admin)
-                SignButton.Content = "Edit";
-            if(currentCourse.IsSignedIn)
             {
+
                 SignButton.Visibility = Visibility.Collapsed;
             }
-            else
-                deleteButton.Visibility = Visibility.Collapsed;
+            if (MainWindow.loggedInUser is Student)
+            {
+
+                EditButton.Visibility = Visibility.Collapsed;
+            }
+
+
 
         }
 
@@ -52,10 +56,14 @@ namespace Course4UWpf
 
         private void SignButton_Click(object sender, RoutedEventArgs e)
         {
-            CourseDB courseDB = new CourseDB(); // Create an instance of CourseDB
-            courseDB.SignNewCourse(MainWindow.loggedInUser.Id, currentCourse.Id); // Use the instance to call the method
-            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
-            mainWindow.MainFrame.Navigate(new CourseWithUserControlPage());
+            if (MainWindow.loggedInUser is Student)
+            {
+
+                CourseDB courseDB = new CourseDB(); // Create an instance of CourseDB
+                courseDB.SignNewCourse(MainWindow.loggedInUser.Id, currentCourse.Id); // Use the instance to call the method
+                MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+                mainWindow.MainFrame.Navigate(new CourseWithUserControlPage());
+            }
 
         }
 
@@ -64,9 +72,40 @@ namespace Course4UWpf
 
         }
 
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        private void EditButton_Click(object sender, RoutedEventArgs e)
         {
 
+                DayText.IsReadOnly = false;
+                EndDateText.IsReadOnly = false;
+                EndHourText.IsReadOnly = false;
+                PriceText.IsReadOnly = false;
+                FirstNameText.IsReadOnly = false;
+                LastNameText.IsReadOnly = false;
+                StartHourText.IsReadOnly = false;
+                StartDateText.IsReadOnly = false;
+
+                MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+                mainWindow.MainFrame.Navigate(new CourseInfoPage(currentCourse));
+            
+        }
+
+        private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
+        {
+            Course c = DataContext as Course;
+
+            c.CourseType = CourseNameText.Text;
+            c.DayInWeek = DayText.Text;
+            c.StartHour = DateTime.Parse(StartHourText.Text);
+            c.EndHour = DateTime.Parse(EndHourText.Text);
+            c.StartDate = DateTime.Parse(StartDateText.Text);
+            c.EndDate = DateTime.Parse(EndDateText.Text);
+            c.RoomNumber = int.Parse(RoomText.Text);
+            c.Price = int.Parse(PriceText.Text);
+            CourseDB db = new CourseDB();
+            db.CreateUpdateSQL(c); // מפעיל CreateUpdateSQL
+
+            MessageBox.Show("Course updated successfully");
         }
     }
 }
+
