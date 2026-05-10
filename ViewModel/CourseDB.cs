@@ -24,19 +24,21 @@ namespace ViewModel
         {
             Course course = entity as Course;
 
-            string sqlStr = $@"UPDATE CourseTbl
+            string sqlStr = $@"
+UPDATE CourseTbl
 SET 
     TeacherID = {course.Teacher.Id},
-    CourseTypeID = '{course.CourseType}',
+    CourseTypeID = {course.CourseTypeValue.Id},
     DayInWeek = '{course.DayInWeek}',
-    StartHour = #{course.StartHour:HH:mm:ss}#,
-    EndHour = #{course.EndHour:HH:mm:ss}#,
-    StartDate = #{course.StartDate:yyyy-MM-dd}#,
-    EndDate = #{course.EndDate:yyyy-MM-dd}#,
+    StartHour = '{course.StartHour:HH:mm:ss}',
+    EndHour = '{course.EndHour:HH:mm:ss}',
+    StartDate = '{course.StartDate:yyyy-MM-dd}',
+    EndDate = '{course.EndDate:yyyy-MM-dd}',
     Price = {course.Price},
     RoomNumber = {course.RoomNumber}
 WHERE ID = {course.Id};
-"; 
+";
+
             return sqlStr;
         }
 
@@ -50,8 +52,10 @@ WHERE ID = {course.Id};
             TeacherDB teacherDB = new TeacherDB();
             course.Teacher = teacherDB.GetTeacherById(teacher);
 
-            course.CourseType = this.reader["CourseTypeID"].ToString();
 
+            int courseTypeId= (int)this.reader["CourseTypeID"];
+            CourseTypeDB courseTypeDB = new CourseTypeDB();
+            course.CourseTypeValue = courseTypeDB.GetCourseTypeByID(courseTypeId);
 
             course.Price = (int)this.reader["Price"];
             course.DayInWeek = this.reader["DayInWeek"].ToString();
@@ -67,21 +71,7 @@ WHERE ID = {course.Id};
         {
 
             this.command.CommandText = @"
-SELECT 
-    CourseTbl.ID,
-    CourseTbl.TeacherID ,
-    CourseTypeTbl.Course AS CourseTypeID,
-    CourseTbl.DayInWeek,
-    CourseTbl.StartHour,
-    CourseTbl.EndHour,
-    CourseTbl.StartDate,
-    CourseTbl.EndDate,
-    CourseTbl.Price,
-    CourseTbl.RoomNumber
-FROM CourseTbl
-LEFT JOIN CourseTypeTbl
-    ON CourseTbl.CourseTypeID = CourseTypeTbl.ID;
-";
+SELECT * FROM CourseTbl;";
 
 
             return new CourseList(base.Select());
@@ -148,7 +138,7 @@ WHERE CourseTbl.ID NOT IN
 
             return new CourseList(base.Select());
         }
-        public CourseList SignNewCourse(int studentID,int courseID)
+        public CourseList SignNewCourse(int studentID, int courseID)
         {
 
             this.command.CommandText = $@"INSERT INTO StudentCourseTbl (StudentID, CourseID)
@@ -164,6 +154,10 @@ VALUES ({studentID}, {courseID});
         {
             return new Course();
         }
-
+        public void ExecuteNonQuery(string sql)
+        {
+            this.command.CommandText = sql;
+            this.command.ExecuteNonQuery();
+        }
     }
 }

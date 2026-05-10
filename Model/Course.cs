@@ -9,7 +9,7 @@ namespace Model
     public class Course:BaseEntity
     {
         
-        private string courseType;
+        private CourseType courseTypeValue;
         private Teacher teacher;
         private string  dayInWeek;
         private int price;
@@ -20,7 +20,6 @@ namespace Model
         private int roomNumber;
         private bool isSignedIn;
 
-        public string CourseType { get; set; }
         public Teacher Teacher { get; set; }
         public string  DayInWeek { get; set; }
         public int Price { get; set; }
@@ -30,5 +29,6 @@ namespace Model
         public DateTime EndDate { get; set; }
         public int RoomNumber { get; set; }
         public bool IsSignedIn { get; set; }
+        public CourseType CourseTypeValue { get; set; }
     }
 }

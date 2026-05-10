@@ -74,7 +74,7 @@ namespace ViewModel
             teacher.Salary = (int)this.reader["Salary"];
 
         }
-
+          
         public Teacher GetTeacherById(int teacher)
         {
             this.command.CommandText = $@"SELECT 
@@ -106,9 +106,22 @@ WHERE TeacherTbl.ID = {teacher};";
 
         public TeacherList SelectAll()
         {
-            this.command.CommandText = $@"SELECT UserTbl.FirstName, UserTbl.LastName, UserTbl.Email, UserTbl.Password, UserTbl.BirthDate, UserTbl.Gender, UserTbl.PhoneNumber, TeacherTbl.ID, TeacherTbl.TeachingCourseID, TeacherTbl.Salary
-FROM UserTbl INNER JOIN TeacherTbl ON (UserTbl.ID = TeacherTbl.ID) AND (UserTbl.ID = TeacherTbl.ID);
-";
+            this.command.CommandText = @"
+    SELECT 
+        UserTbl.ID,
+        UserTbl.FirstName, 
+        UserTbl.LastName, 
+        UserTbl.Email, 
+        UserTbl.Password, 
+        UserTbl.BirthDate, 
+        UserTbl.Gender, 
+        UserTbl.PhoneNumber, 
+        TeacherTbl.TeachingCourseID, 
+        TeacherTbl.Salary
+    FROM UserTbl 
+    INNER JOIN TeacherTbl 
+        ON UserTbl.ID = TeacherTbl.ID;
+    ";
 
             return new TeacherList(base.Select());
         }

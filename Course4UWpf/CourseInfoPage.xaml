@@ -132,25 +132,30 @@
                     <Border Style="{StaticResource FieldCard}" Margin="0,0,0,8">
                         <StackPanel>
                             <TextBlock Text="Teacher" Style="{StaticResource SectionLabel}"/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBox Text="{Binding Teacher.FirstName}" x:Name="FirstNameText" IsReadOnly="True"
-BorderThickness="0"
-Background="Transparent"
-Foreground="{StaticResource ValueBrush}"
-FontSize="18"
-FontWeight="SemiBold"
-Padding="0"
-Margin="0"/>
+
+                            <!-- תצוגה -->
+                            <StackPanel x:Name="TeacherDisplayPanel" Orientation="Horizontal">
+                                <TextBox Text="{Binding Teacher.FirstName}" IsReadOnly="True"
+                     BorderThickness="0" Background="Transparent"
+                     Foreground="{StaticResource ValueBrush}"
+                     FontSize="18" FontWeight="SemiBold"/>
                                 <TextBlock Text=" "/>
-                                <TextBox Text="{Binding Teacher.LastName}" x:Name="LastNameText" IsReadOnly="True"
-BorderThickness="0"
-Background="Transparent"
-Foreground="{StaticResource ValueBrush}"
-FontSize="18"
-FontWeight="SemiBold"
-Padding="0"
-Margin="0"/>
+                                <TextBox Text="{Binding Teacher.LastName}" IsReadOnly="True"
+                     BorderThickness="0" Background="Transparent"
+                     Foreground="{StaticResource ValueBrush}"
+                     FontSize="18" FontWeight="SemiBold"/>
                             </StackPanel>
+
+                            <!-- עריכה -->
+                            <Border x:Name="TeacherComboBorder"
+                Visibility="Collapsed">
+
+                                <ComboBox x:Name="TeacherComboBox"
+                      DisplayMemberPath="FullName"
+                      SelectedItem="{Binding Teacher, Mode=TwoWay}"
+                      Padding="6"/>
+                            </Border>
+
                         </StackPanel>
                     </Border>
 
@@ -227,6 +232,8 @@ Margin="0"/>
                         <Border Grid.Column="0" Style="{StaticResource FieldCard}">
                             <StackPanel>
                                 <TextBlock Text="Start Date" Style="{StaticResource SectionLabel}"/>
+
+                                <!-- תצוגה -->
                                 <TextBox x:Name="StartDateText"
                  Text="{Binding StartDate,StringFormat={}{0:MM/dd/yyyy}}"
                  IsReadOnly="True"
@@ -234,15 +241,25 @@ Margin="0"/>
                  Background="Transparent"
                  Foreground="{StaticResource ValueBrush}"
                  FontSize="18"
-                 FontWeight="SemiBold"
-                 Padding="0"
-                 Margin="0"/>
+                 FontWeight="SemiBold"/>
+
+                                <!-- עריכה -->
+                                <Border x:Name="StartDatePickerBorder"
+                Style="{StaticResource FieldCard}"
+                Visibility="Collapsed">
+                                    <DatePicker x:Name="StartDatePicker"
+                        SelectedDate="{Binding StartDate}"
+                        BorderThickness="0"
+                        Padding="8"/>
+                                </Border>
                             </StackPanel>
                         </Border>
 
                         <Border Grid.Column="2" Style="{StaticResource FieldCard}">
                             <StackPanel>
                                 <TextBlock Text="End Date" Style="{StaticResource SectionLabel}"/>
+
+                                <!-- תצוגה -->
                                 <TextBox x:Name="EndDateText"
                  Text="{Binding EndDate,StringFormat={}{0:MM/dd/yyyy}}"
                  IsReadOnly="True"
@@ -250,9 +267,17 @@ Margin="0"/>
                  Background="Transparent"
                  Foreground="{StaticResource ValueBrush}"
                  FontSize="18"
-                 FontWeight="SemiBold"
-                 Padding="0"
-                 Margin="0"/>
+                 FontWeight="SemiBold"/>
+
+                                <!-- עריכה -->
+                                <Border x:Name="EndDatePickerBorder"
+                Style="{StaticResource FieldCard}"
+                Visibility="Collapsed">
+                                    <DatePicker x:Name="EndDatePicker"
+                        SelectedDate="{Binding EndDate}"
+                        BorderThickness="0"
+                        Padding="8"/>
+                                </Border>
                             </StackPanel>
                         </Border>
                     </Grid>
@@ -318,6 +343,7 @@ Margin="0"/>
                             Content="Edit"
                             Style="{StaticResource PrimaryButton}"
                             Click="EditButton_Click"/>
+
                         <Button Grid.Column="0"
                             x:Name="SaveChangesButton"
                             Content="save"
@@ -330,7 +356,6 @@ Margin="0"/>
                             Style="{StaticResource GhostButton}"
                             Click="CancelButton_Click"/>
                     </Grid>
-
                 </StackPanel>
 
             </Border>

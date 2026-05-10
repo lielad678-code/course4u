@@ -27,7 +27,7 @@ namespace ViewModel
         protected override void CreateModel(BaseEntity entity)
         {
             CourseType courseType = entity as CourseType;
-            courseType.Id = (int)this.reader["ID"];
+            courseType.Id = (int)this.reader["Id"];
             courseType.CourseName = this.reader["Course"].ToString();
 
         }
@@ -39,11 +39,8 @@ namespace ViewModel
 
         public CourseType GetCourseTypeByID(int courseType)
         {
-            this.command.CommandText = $@"SELECT CourseTypeTbl.Course
-FROM CourseTypeTbl
-WHERE CourseTypeTbl.ID = {courseType};
-";
-
+            this.command.CommandText = $@"SELECT * FROM CourseTypeTbl
+                WHERE CourseTypeTbl.ID = {courseType};";
 
             CourseTypeList list = new CourseTypeList(Select());
 
