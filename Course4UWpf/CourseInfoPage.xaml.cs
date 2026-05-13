@@ -36,7 +36,7 @@ namespace Course4UWpf
 
             // 👇 טען מורים מהדאטהבייס
             TeacherDB teacherDB = new TeacherDB();
-            List<Teacher> teachers = teacherDB.GetAllTeachers();
+            List<Teacher> teachers = teacherDB.SelectAll();
 
             TeacherComboBox.ItemsSource = teachers;
 
